@@ -1,5 +1,10 @@
 # Twilio Serverless Frontline Integration Service
 
+## Charlie Weems - Frontline + Airtable QuickStart
+
+- [Youtube](https://www.youtube.com/watch?v=KDrhR1HyrlE)
+- [Github Repo](https://github.com/cweems/frontline-airtable-quickstart)
+
 ![Twilio Frontline Integrations Service](https://user-images.githubusercontent.com/1418949/156482434-bda73f12-b1c1-4876-9177-0367751f6ff5.png)
 
 
