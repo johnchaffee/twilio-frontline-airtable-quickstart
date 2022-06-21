@@ -163,14 +163,18 @@ const findRandomWorker = async (context) => {
 const getCustomersList = async (context, worker, pageSize, anchor) => {
   // Pull airtable customers on first load,
   // otherwise use what's stored in memory
-  if (anchor === undefined || customers.length === 0) {
-    customers = await getAllAirtableCustomers(context, worker)
-    setLastFetch()
-  } else {
-    const newCustomers = await getNewCustomers(context, worker)
-    customers = customers.concat(newCustomers)
-    setLastFetch()
-  }
+
+  // if (anchor === undefined || customers.length === 0) {
+  //   customers = await getAllAirtableCustomers(context, worker)
+  //   setLastFetch()
+  // } else {
+  //   const newCustomers = await getNewCustomers(context, worker)
+  //   customers = customers.concat(newCustomers)
+  //   setLastFetch()
+  // }
+
+  // Always pull all customers to avoid caching glitches
+  customers = await getAllAirtableCustomers(context, worker)
 
   const workerCustomers = customers.filter(customer => customer.worker === worker)
   const list = workerCustomers.map(customer => ({
