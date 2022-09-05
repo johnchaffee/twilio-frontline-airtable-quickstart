@@ -4,7 +4,7 @@ const authToken = process.env.AUTH_TOKEN
 const twilioPhoneNumber = process.env.TWILIO_SMS_NUMBER
 const author = process.env.AUTHOR
 const client = require("twilio")(accountSid, authToken)
-let conversationSid
+let conversationSid = ""
 let activeConversation = false
 
 console.log("\x1b[32m author ==>", author, "\x1b[0m")
@@ -82,7 +82,7 @@ exports.handler = function (context, event, callback) {
     await client.conversations.v1
       .conversations(conversationSid)
       .participants.create({
-        "identity": author,
+        identity: author,
       })
       .then((participant) =>
         console.log("\x1b[32m participant.sid ==>", participant.sid, "\x1b[0m")
