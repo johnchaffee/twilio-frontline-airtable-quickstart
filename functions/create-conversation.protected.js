@@ -17,18 +17,21 @@ exports.handler = function (context, event, callback) {
   const mobileNumber = event.mobileNumber
   console.log("\x1b[32m mobileNumber ==>", mobileNumber, "\x1b[0m")
 
-  const applicant = event.applicant
-  console.log("\x1b[32m applicant ==>", applicant, "\x1b[0m")
+  const name = event.name
+  console.log("\x1b[32m name ==>", name, "\x1b[0m")
 
-  const firstName = applicant.split(" ")[0]
-  console.log("\x1b[32m firstName ==>", firstName, "\x1b[0m")
-
-  console.log("\x1b[32m event.recruiter ==>", event.recruiter, "\x1b[0m")
-
-  console.log("\x1b[32m event.job ==>", event.job, "\x1b[0m")
-
-  const body = `Hi ${firstName}, this is ${event.recruiter} at Array. There is a job opening at ${event.job} that I think you are well qualified for. Would you like to discuss it?`
+  const body = event.body
   console.log("\x1b[32m body ==>", body, "\x1b[0m")
+
+  // const firstName = name.split(" ")[0]
+  // console.log("\x1b[32m firstName ==>", firstName, "\x1b[0m")
+
+  // console.log("\x1b[32m event.recruiter ==>", event.recruiter, "\x1b[0m")
+
+  // console.log("\x1b[32m event.job ==>", event.job, "\x1b[0m")
+
+  // const body = `Hi ${firstName}, this is ${event.recruiter} at Array. There is a job opening at ${event.job} that I think you are well qualified for. Would you like to discuss it?`
+  // console.log("\x1b[32m body ==>", body, "\x1b[0m")
 
   // Check to see if an active conversation already exists
   async function getActiveConversations() {
@@ -54,7 +57,7 @@ exports.handler = function (context, event, callback) {
 
   async function createConversation() {
     await client.conversations.v1.conversations
-      .create({ friendlyName: applicant })
+      .create({ friendlyName: name })
       .then((conversation) => {
         conversationSid = conversation.sid
         console.log("\x1b[32m conversationSid ==>", conversationSid, "\x1b[0m")
